@@ -18,7 +18,6 @@ const ICON_SIZE = 24;
 type Props = {
   animal: Animal;
   zIndex: number;
-  playLikeSound?: () => void;
 };
 
 function AnimalCard({ animal: { name, image }, zIndex }: Props) {

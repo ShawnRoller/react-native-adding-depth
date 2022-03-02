@@ -1,14 +1,7 @@
 {
-	// Place your adding-depth-final workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-
-	"Refresh animation - state": {
+	"Refresh - state": {
 		"scope": "javascript,typescript,typescriptreact",
-		"prefix": "anim",
+		"prefix": "refresh",
 		"body": [
 			"const refreshRotation = useSharedValue(0);",
 			"",
@@ -16,11 +9,11 @@
 			"  transform: [{ rotateZ: `${refreshRotation.value}deg` }],",
 			"}));",
 		],
-		"description": "Refresh animation state"
+		"description": "Animation state:88"
 	},
-	"Refresh animation implementation": {
+	"Refresh - implementation": {
 		"scope": "javascript,typescript,typescriptreact",
-		"prefix": "anim",
+		"prefix": "refresh",
 		"body": [
 			"refreshRotation.value = withRepeat(",
 			"  withTiming(720, { duration: 3000 }),",
@@ -29,6 +22,214 @@
 			"  () => (refreshRotation.value = 0)",
 			");",
 		],
-		"description": "Refresh animation in onSearch"
+		"description": "Animation in onSearch:105"
+	},
+	"Refresh - render": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "refresh",
+		"body": [
+			"<ReanimatedPressable",
+			"  style={[styles.cta, refreshStyle]}",
+			"  onPress={onSearch}",
+			"  disabled={isLoading}",
+			">",
+			"  <RenimatedIcon name=\"refresh\" size={ICON_SIZE} color=\"black\" />",
+			"</ReanimatedPressable>"
+		],
+		"description": "Replace Pressable:132"
+	},
+	"Refresh - components": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "refresh",
+		"body": [
+			"const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);",
+			"const RenimatedIcon = Reanimated.createAnimatedComponent(FontAwesome);",
+		],
+		"description": "Create Reanimated components:23"
+	},
+
+
+	"Favorite - constants": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get(\"screen\");",
+			"const ICON_MAX_SCALE = 2;",
+			"const ICON_MIN_SCALE = 0.7;",
+			"const ANIMATION_TIME_BASELINE = 2000;",
+			"const X_OFFSET_TO_CENTER = SCREEN_WIDTH / 2 - CARD_PADDING * 2 - ICON_SIZE / 2;",
+			"const Y_OFFSET_TO_BOTTOM = SCREEN_HEIGHT;",
+			"const Y_OFFSET_BOUNCE = ICON_SIZE;",
+		],
+		"description": "Add constants for favorites:26"
+	},
+	"Favorite - dimensions": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get(\"screen\");",
+			"const ICON_MAX_SCALE = 2;",
+			"const ICON_MIN_SCALE = 0.7;",
+			"const ANIMATION_TIME_BASELINE = 2000;",
+			"const X_OFFSET_TO_CENTER = SCREEN_WIDTH / 2 - CARD_PADDING * 2 - ICON_SIZE / 2;",
+			"const Y_OFFSET_TO_BOTTOM = SCREEN_HEIGHT;",
+			"const Y_OFFSET_BOUNCE = ICON_SIZE;",
+		],
+		"description": "Add constants for favorites:26"
+	},
+	"Favorite - state": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"const xOffset = useSharedValue(0);",
+			"const yOffset = useSharedValue(0);",
+			"const iconScale = useSharedValue(1);",
+			"const scale = useSharedValue(1);",
+			"",
+			"const buttonStyle = useAnimatedStyle(() => {",
+			"return { transform: [{ scale: scale.value }] };",
+			"});",
+			"",
+			"const positionStyle = useAnimatedStyle(() => {",
+			"return { transform: [ { translateX: xOffset.value }, { translateY: yOffset.value }, { scale: iconScale.value }]};",
+			"});",
+		],
+		"description": "Add state for favorite animations:44"
+	},
+	"Favorite - render reanimated pressable": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"<ReanimatedPressable style={[cardStyles.iconContainer, buttonStyle]} onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>",
+			"<RenimatedIcon style={[positionStyle, { position: \"absolute\", zIndex }]} name=\"heart\" size={ICON_SIZE} color=\"red\"/>",
+			"<RenimatedIcon style={{ zIndex: zIndex + 1 }} name=\"heart\" size={ICON_SIZE} color={iconColor}/>",
+			"</ReanimatedPressable>",
+		],
+		"description": "Render animated components:110"
+	},
+	"Favorite - on press in/out": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"const onPressIn = () => {",
+			"scale.value = withTiming(ICON_MIN_SCALE, { duration: 100 });",
+			"};",
+			"",
+			"const onPressOut = () => {",
+			"scale.value = withSpring(1, { mass: 0.2 });",
+			"};",
+		],
+		"description": "Render animated components:75"
+	},
+	"Favorite - deselect animation": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"xOffset.value = withSpring(0, { damping: 50 });",
+			"yOffset.value = withSpring(0, { damping: 50 });",
+		],
+		"description": "Animations for isSelected state:70"
+	},
+	"Favorite - select animation": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"xOffset.value = withSpring(-X_OFFSET_TO_CENTER, { damping: 15 });",
+			"",
+			"yOffset.value = withSequence(withTiming(Y_OFFSET_BOUNCE * 4, {duration: ANIMATION_TIME_BASELINE / 4,}),withDelay(ANIMATION_TIME_BASELINE / 4,withTiming(-Y_OFFSET_BOUNCE / 5, {duration: ANIMATION_TIME_BASELINE / 4,})),withTiming(Y_OFFSET_TO_BOTTOM, {duration: ANIMATION_TIME_BASELINE / 2,easing: Easing.in(Easing.exp),}));",
+			"",
+			"iconScale.value = withSequence(withTiming(ICON_MAX_SCALE, { duration: ANIMATION_TIME_BASELINE / 2 }),withTiming(1, { duration: ANIMATION_TIME_BASELINE / 2 }));",
+		],
+		"description": "Animations for !isSelected state:75"
+	},
+	"Favorite - cancel function": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"const cancelAnimations = () => {",
+			"cancelAnimation(xOffset);",
+			"cancelAnimation(yOffset);",
+			"};",
+		],
+		"description": "Function for cancel:86"
+	},
+	"Favorite - cancel deselect": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"cancelAnimations();",
+		],
+		"description": "Cancel for deselect:95"
+	},
+	"Favorite - cancel select": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"cancelAnimations();",
+		],
+		"description": "Cancel for select:102"
+	},
+
+	"Haptics - import": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "haptics",
+		"body": [
+			"import * as Haptics from \"expo-haptics\";",
+		],
+		"description": "Import haptics:25"
+	},
+	"Haptics - onPressIn": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "haptics",
+		"body": [
+			"Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);",
+		],
+		"description": "Add light haptic:104"
+	},
+	"Haptics - onPressOut": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "haptics",
+		"body": [
+			"Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);",
+		],
+		"description": "Add medium haptic:109"
+	},
+
+
+	"Audio - import": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "audio",
+		"body": [
+			"import { Audio } from \"expo-av\";",
+			"const LIKE_SOUND = require(\"../assets/pop.wav\");",
+		],
+		"description": "Import audio:26"
+	},
+	"Audio - state": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "audio",
+		"body": [
+			"const [sound, setSound] = React.useState<Audio.Sound>();",
+			"",
+			"const playSound = React.useCallback(async () => {",
+			"const { sound } = await Audio.Sound.createAsync(LIKE_SOUND);",
+			"setSound(sound);",
+			"",
+			"await sound.playAsync();",
+			"}, []);",
+			"",
+			"React.useEffect(() => {",
+			"return sound ? () => { sound.unloadAsync(); } : undefined;",
+			"}, [sound]);",
+		],
+		"description": "Audio state and functions:50"
+	},
+	"Audio - play": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "audio",
+		"body": [
+			"playSound();",
+		],
+		"description": "Play audio for select:95"
 	},
 }

@@ -34,12 +34,18 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("screen");
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 const RenimatedIcon = Reanimated.createAnimatedComponent(FontAwesome);
 
+const ICON_MAX_SCALE = 2;
+const ICON_MIN_SCALE = 0.7;
+const ANIMATION_TIME_BASELINE = 2000;
+const X_OFFSET_TO_CENTER = SCREEN_WIDTH / 2 - CARD_PADDING * 2 - ICON_SIZE / 2;
+const Y_OFFSET_TO_BOTTOM = SCREEN_HEIGHT;
+const Y_OFFSET_BOUNCE = ICON_SIZE;
+
 const LIKE_SOUND = require("../assets/pop.wav");
 
 type Props = {
   animal: Animal;
   zIndex: number;
-  playLikeSound?: () => void;
 };
 
 function AnimalCard({ animal: { name, image }, zIndex }: Props) {
@@ -61,14 +67,6 @@ function AnimalCard({ animal: { name, image }, zIndex }: Props) {
         }
       : undefined;
   }, [sound]);
-
-  const ICON_MAX_SCALE = 2;
-  const ICON_MIN_SCALE = 0.7;
-  const ANIMATION_TIME_BASELINE = 2000;
-  const X_OFFSET_TO_CENTER =
-    SCREEN_WIDTH / 2 - CARD_PADDING * 2 - ICON_SIZE / 2;
-  const Y_OFFSET_TO_BOTTOM = SCREEN_HEIGHT;
-  const Y_OFFSET_BOUNCE = ICON_SIZE;
 
   const xOffset = useSharedValue(0);
   const yOffset = useSharedValue(0);
