@@ -40,12 +40,7 @@ function AnimalCard({ animal: { name, image }, zIndex }: Props) {
         <Image style={cardStyles.image} source={image} resizeMode="contain" />
       </View>
       <Pressable style={cardStyles.iconContainer} onPress={onPress}>
-        <FontAwesome
-          style={{ zIndex: zIndex + 1 }}
-          name="heart"
-          size={ICON_SIZE}
-          color={iconColor}
-        />
+        <FontAwesome name="heart" size={ICON_SIZE} color={iconColor} />
       </Pressable>
     </Card>
   );
