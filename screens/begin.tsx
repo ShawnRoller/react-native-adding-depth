@@ -46,36 +46,6 @@ function AnimalCard({ animal: { name, image }, zIndex }: Props) {
   );
 }
 
-const cardStyles = StyleSheet.create({
-  card: {
-    marginTop: 8,
-  },
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 24,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 14,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  image: {
-    height: 128,
-    width: 128,
-    borderRadius: 64,
-    borderWidth: 1,
-    borderColor: "black",
-  },
-  iconContainer: {
-    top: CARD_PADDING,
-    right: CARD_PADDING,
-    position: "absolute",
-    alignItems: "flex-end",
-  },
-});
-
 export default function Begin() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [searchResult, setSearchResult] = React.useState<Animal[]>([]);
@@ -120,6 +90,7 @@ export default function Begin() {
   );
 }
 
+// Styles!
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -147,5 +118,35 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 18,
+  },
+});
+
+const cardStyles = StyleSheet.create({
+  card: {
+    marginTop: 8,
+  },
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  image: {
+    height: 128,
+    width: 128,
+    borderRadius: 64,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  iconContainer: {
+    top: CARD_PADDING,
+    right: CARD_PADDING,
+    position: "absolute",
+    alignItems: "flex-end",
   },
 });
