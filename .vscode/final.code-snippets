@@ -9,20 +9,20 @@
 			"  transform: [{ rotateZ: `${refreshRotation.value}deg` }],",
 			"}));",
 		],
-		"description": "Animation state:88"
+		"description": "Animation state:52"
 	},
 	"Refresh - implementation": {
 		"scope": "javascript,typescript,typescriptreact",
 		"prefix": "refresh",
 		"body": [
 			"refreshRotation.value = withRepeat(",
-			"  withTiming(720, { duration: 3000 }),",
-			"  1,",
-			"  true,",
+			"  withTiming(360, { duration: 1500 }),",
+			"  2,",
+			"  false,",
 			"  () => (refreshRotation.value = 0)",
 			");",
 		],
-		"description": "Animation in onSearch:105"
+		"description": "Animation in onSearch:67"
 	},
 	"Refresh - render": {
 		"scope": "javascript,typescript,typescriptreact",
@@ -36,7 +36,7 @@
 			"  <RenimatedIcon name=\"refresh\" size={ICON_SIZE} color=\"black\" />",
 			"</ReanimatedPressable>"
 		],
-		"description": "Replace Pressable:132"
+		"description": "Replace Pressable:101"
 	},
 	"Refresh - components": {
 		"scope": "javascript,typescript,typescriptreact",
@@ -50,20 +50,6 @@
 
 
 	"Favorite - constants": {
-		"scope": "javascript,typescript,typescriptreact",
-		"prefix": "favorite",
-		"body": [
-			"const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get(\"screen\");",
-			"const ICON_MAX_SCALE = 2;",
-			"const ICON_MIN_SCALE = 0.7;",
-			"const ANIMATION_TIME_BASELINE = 2000;",
-			"const X_OFFSET_TO_CENTER = SCREEN_WIDTH / 2 - CARD_PADDING * 2 - ICON_SIZE / 2;",
-			"const Y_OFFSET_TO_BOTTOM = SCREEN_HEIGHT;",
-			"const Y_OFFSET_BOUNCE = ICON_SIZE;",
-		],
-		"description": "Add constants for favorites:26"
-	},
-	"Favorite - dimensions": {
 		"scope": "javascript,typescript,typescriptreact",
 		"prefix": "favorite",
 		"body": [
@@ -105,7 +91,7 @@
 			"<RenimatedIcon style={{ zIndex: zIndex + 1 }} name=\"heart\" size={ICON_SIZE} color={iconColor}/>",
 			"</ReanimatedPressable>",
 		],
-		"description": "Render animated components:110"
+		"description": "Render animated components:79"
 	},
 	"Favorite - on press in/out": {
 		"scope": "javascript,typescript,typescriptreact",
@@ -119,17 +105,9 @@
 			"scale.value = withSpring(1, { mass: 0.2 });",
 			"};",
 		],
-		"description": "Render animated components:75"
+		"description": "Render animated components:70"
 	},
-	"Favorite - deselect animation": {
-		"scope": "javascript,typescript,typescriptreact",
-		"prefix": "favorite",
-		"body": [
-			"xOffset.value = withSpring(0, { damping: 50 });",
-			"yOffset.value = withSpring(0, { damping: 50 });",
-		],
-		"description": "Animations for isSelected state:70"
-	},
+
 	"Favorite - select animation": {
 		"scope": "javascript,typescript,typescriptreact",
 		"prefix": "favorite",
@@ -140,7 +118,16 @@
 			"",
 			"iconScale.value = withSequence(withTiming(ICON_MAX_SCALE, { duration: ANIMATION_TIME_BASELINE / 2 }),withTiming(1, { duration: ANIMATION_TIME_BASELINE / 2 }));",
 		],
-		"description": "Animations for !isSelected state:75"
+		"description": "Animations for !isSelected state:70"
+	},
+	"Favorite - deselect animation": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "favorite",
+		"body": [
+			"xOffset.value = withSpring(0, { damping: 50 });",
+			"yOffset.value = withSpring(0, { damping: 50 });",
+		],
+		"description": "Animations for isSelected state:70"
 	},
 	"Favorite - cancel function": {
 		"scope": "javascript,typescript,typescriptreact",
@@ -159,7 +146,7 @@
 		"body": [
 			"cancelAnimations();",
 		],
-		"description": "Cancel for deselect:95"
+		"description": "Cancel for deselect:75"
 	},
 	"Favorite - cancel select": {
 		"scope": "javascript,typescript,typescriptreact",
@@ -167,7 +154,7 @@
 		"body": [
 			"cancelAnimations();",
 		],
-		"description": "Cancel for select:102"
+		"description": "Cancel for select:82"
 	},
 
 	"Haptics - import": {
@@ -230,6 +217,6 @@
 		"body": [
 			"playSound();",
 		],
-		"description": "Play audio for select:95"
+		"description": "Play audio for select:102"
 	},
 }
