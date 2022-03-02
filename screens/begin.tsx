@@ -86,7 +86,6 @@ export default function Begin() {
   const [searchResult, setSearchResult] = React.useState<Animal[]>([]);
 
   const loadResult = () => {
-    setIsLoading(false);
     setSearchResult(animals);
   };
 
@@ -96,6 +95,7 @@ export default function Begin() {
 
     setTimeout(() => {
       loadResult();
+      setIsLoading(false);
     }, 2000);
   };
 
